@@ -38,7 +38,7 @@ A step by step series of examples that tell you how to get a development env run
 
 
 ```
-  Create a .env file for Config
+  Create a .env file for dotenv-Config
 ```
   DB_CONNECT = value
   GOOGLE_CLIENT_ID = value
