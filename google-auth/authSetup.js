@@ -3,24 +3,24 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // after authentication success..
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
 // after evvery authentication called cookie-session will
 // trigger this function and take id from this cookie
 // find user in db
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(user, done) {
     // No db with that
     // User.findById(id, function(err, user) {
     done(null, user);
     // });
 });
-// console.log(process.env.GOOGLE_CLIENT_ID);
+
 passport.use(
     new GoogleStrategy({
-            clientID: "761993603371-b9nsbghim86miat9l89ojmvn3jv5hb3v.apps.googleusercontent.com",
-            clientSecret: "yWGwqhXd35GyTU3tMn_qxbTg",
-            callbackURL: "http://localhost:3000/auth/google/callbacks"
+            clientID: `${process.env.GOOGLE_CLIENT_ID}`,
+            clientSecret: `${process.env.GOOGLE_CLIENT_KEY}`,
+            callbackURL: `${process.env.GOOGLE_CALLBACK_URL}`
         },
         function(accessToken, refreshToken, profile, done) {
             // here we can get profile.id to find if user is already registered
